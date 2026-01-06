@@ -235,6 +235,67 @@
 	  }
 	}
 
+	/* === Core Capabilities Visual Block === */
+
+	.capabilities-visual {
+	  grid-column: 1 / -1;     /* ⬅️ РАСТЯГИВАЕТ БЛОК НА ВСЮ ШИРИНУ GRID */
+	  margin-top: 3rem;
+	  display: flex;
+	  justify-content: center; /* ⬅️ ЦЕНТРИРОВАНИЕ ПО ГОРИЗОНТАЛИ */
+	}
+
+
+	.visual-carousel {
+	  position: relative;
+
+	  width: 100%;                /* ← РАЗМЕР КАРУСЕЛИ */
+	  max-width: 1000px;
+
+	  aspect-ratio: 16 / 9;
+	  border-radius: 14px;
+	  overflow: hidden;
+
+	  border: 1px solid rgba(255, 255, 255, 0.4);   /* ← ОБВОДКА */
+	  box-shadow:
+		0 10px 30px rgba(0, 0, 0, 0.45),              /* ← ОСНОВНАЯ ТЕНЬ */
+		0 0 0 1px rgba(255,255,255,0.03);             /* ← МЯГКОЕ СВЕЧЕНИЕ */
+
+	  background: #000;
+	}
+
+
+
+	.visual {
+	  position: absolute;
+	  inset: 0;
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;
+
+	  opacity: 0;
+	  transition: opacity 0.5s ease;
+	}
+
+	.visual.active {
+	  opacity: 1;
+	}
+
+	/* === Связь с пунктами === */
+
+	.service {
+	  transition:
+		transform 0.4s ease,
+		background 0.4s ease,
+		box-shadow 0.4s ease;
+	}
+
+	.service.active {
+	  transform: translateY(-10px);
+	  background: rgba(255,255,255,0.05);
+	  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+	}
+
+
   </style>
 </head>
 <body>
@@ -317,6 +378,14 @@
           <h4>Audiovisual Systems</h4>
           <p>Integrated pipelines for games, trailers, and experimental media.</p>
         </div>
+		<div class="capabilities-visual">
+		  <div class="visual-carousel">
+			<img src="img/video.jpg" class="visual active" data-index="0">
+			<img src="img/sound.jpg" class="visual" data-index="1">
+			<img src="img/motion.jpg" class="visual" data-index="2">
+			<img src="img/systems.jpg" class="visual" data-index="3">
+		  </div>
+		</div>
       </div>
     </div>
   </section>
@@ -387,6 +456,47 @@
 
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
+	const visuals = document.querySelectorAll('.visual');
+	const services = document.querySelectorAll('.service');
+
+	let currentIndex = 0;
+	let interval;
+
+	/* Показ нужного слайда */
+	function showSlide(index) {
+	  visuals.forEach(v => v.classList.remove('active'));
+	  services.forEach(s => s.classList.remove('active'));
+
+	  visuals[index].classList.add('active');
+	  services[index].classList.add('active');
+
+	  currentIndex = index;
+	}
+
+	/* Автопрокрутка */
+	function startCarousel() {
+	  interval = setInterval(() => {
+		let next = (currentIndex + 1) % visuals.length;
+		showSlide(next);
+	  }, 3000);
+	}
+
+	/* Hover по пункту */
+	services.forEach((service, index) => {
+	  service.addEventListener('mouseenter', () => {
+		clearInterval(interval);
+		showSlide(index);
+	  });
+
+	  service.addEventListener('mouseleave', () => {
+		startCarousel();
+	  });
+	});
+
+	/* Старт */
+	showSlide(0);
+	startCarousel();
+
   </script>
 
 </body>
