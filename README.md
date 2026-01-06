@@ -4,11 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solis Labs — Audiovisual Studio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Шрифт Inter — основной шрифт для всего текста на сайте -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Шрифт Space Grotesk — используется ТОЛЬКО для названия студии -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0e0f12;
-      --bg-soft: #14161b;
+      --bg: #101112;
+      --bg-soft: #1a1a1c;
       --text: #e5e7eb;
       --text-dim: #9ca3af;
       --accent: #8b8f99;
@@ -17,14 +23,18 @@
 
     * { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(1200px 600px at 70% -10%, #1b1e26, var(--bg));
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+	body {
+	  margin: 0;
+
+	  /* Основной шрифт сайта: применяется ко всему тексту */
+	  font-family: 'Inter', sans-serif;
+
+	  background: radial-gradient(1200px 900px at 70% -10%, #27272b, var(--bg));
+	  color: var(--text);
+	  line-height: 1.6;
+	  overflow-x: hidden;
+	}
+
 
     /* subtle stars */
     body::before {
@@ -52,13 +62,17 @@
       padding: 4rem 1.5rem;
     }
 
-    header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
+	header h1 {
+	  font-size: clamp(2.5rem, 5vw, 4rem);
+	  font-weight: 600;
+	  letter-spacing: 0.12em;
+	  text-transform: uppercase;
+	  margin-bottom: 1rem;
+
+	  /* Шрифт названия студии (логотип-текст) */
+	  font-family: "Atkinson Hyperlegible Mono", sans-serif;
+	}
+
 
     header p {
       max-width: 680px;
@@ -67,18 +81,38 @@
       font-size: 1.05rem;
     }
 
-    .scroll {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
+	.scroll {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  gap: 0.4rem;
+
+	  font-size: 0.75rem;
+	  color: var(--text-dim);
+	  letter-spacing: 0.25em;
+	  text-transform: uppercase;
+	  opacity: 0.6;
+	}
+	
+	.scroll-text {
+	  font-family: 'Inter', sans-serif;
+	}
+
+	.scroll-arrow {
+	  font-family: "Atkinson Hyperlegible Mono", monospace; /* UI / системное ощущение */
+	  font-size: 1.2rem;
+	  letter-spacing: normal;
+	  line-height: 1;
+
+	  opacity: 0.8;
+
+	  animation: arrowFloat 1.8s ease-in-out infinite;
+	}
 
     section {
       padding: 5rem 1.5rem;
       border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.008));
     }
 
     .container {
@@ -110,7 +144,7 @@
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .card h3 {
@@ -163,8 +197,8 @@
     /* reveal animation */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
+      transform: translateY(15px);
+      transition: all 0.5s ease;
     }
 	
 	.video-wrapper {
@@ -184,18 +218,37 @@
       opacity: 1;
       transform: translateY(0);
     }
+	
+	/* Анимация стрелки Scroll */
+	@keyframes arrowFloat {
+	  0% {
+		transform: translateY(0);
+		opacity: 0.4;
+	  }
+	  50% {
+		transform: translateY(6px);
+		opacity: 0.9;
+	  }
+	  100% {
+		transform: translateY(0);
+		opacity: 0.4;
+	  }
+	}
+
   </style>
 </head>
 <body>
 
   <header>
     <div>
-      <h1>Solis Labs</h1>
+      <h1>solis labs</h1>
       <p>
         An independent audiovisual studio specializing in the creation of contemporary and engaging media projects.
       </p>
-      <div class="scroll">Scroll</div>
-    </div>
+      <div class="scroll">
+		<span class="scroll-text">Scroll</span>
+		<span class="scroll-arrow">˅</span>
+	</div>
   </header>
 
   <section>
@@ -203,7 +256,7 @@
       <h2>Showreel</h2>
 		<div class="video-wrapper">
 		<iframe 
-		  src="https://youtube.com/embed/jNQXAC9IVRw?si=0IjB6AO7ov-tzQvU"
+		  src="https://youtube.com/embed/QM47jBr99RQ"
 		  frameborder="0"
 		  allow="fullscreen; picture-in-picture"
 		  allowfullscreen>
