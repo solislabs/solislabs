@@ -4,12 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solis Labs — Audiovisual Studio</title>
-  <!-- Шрифт Inter — основной шрифт для всего текста на сайте -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Шрифт Space Grotesk — используется ТОЛЬКО для названия студии -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -26,7 +22,6 @@
 	body {
 	  margin: 0;
 
-	  /* Основной шрифт сайта: применяется ко всему тексту */
 	  font-family: 'Inter', sans-serif;
 
 	  background: radial-gradient(1200px 900px at 70% -10%, #27272b, var(--bg));
@@ -36,7 +31,6 @@
 	}
 
 
-    /* subtle stars */
     body::before {
       content: "";
       position: fixed;
@@ -69,7 +63,6 @@
 	  text-transform: uppercase;
 	  margin-bottom: 1rem;
 
-	  /* Шрифт названия студии (логотип-текст) */
 	  font-family: "Atkinson Hyperlegible Mono", sans-serif;
 	}
 
@@ -219,7 +212,7 @@
       transform: translateY(0);
     }
 	
-	/* Анимация стрелки Scroll */
+	/* Scroll */
 	@keyframes arrowFloat {
 	  0% {
 		transform: translateY(0);
@@ -235,30 +228,29 @@
 	  }
 	}
 
-	/* === Core Capabilities Visual Block === */
 
 	.capabilities-visual {
-	  grid-column: 1 / -1;     /* ⬅️ РАСТЯГИВАЕТ БЛОК НА ВСЮ ШИРИНУ GRID */
+	  grid-column: 1 / -1;     
 	  margin-top: 3rem;
 	  display: flex;
-	  justify-content: center; /* ⬅️ ЦЕНТРИРОВАНИЕ ПО ГОРИЗОНТАЛИ */
+	  justify-content: center; 
 	}
 
 
 	.visual-carousel {
 	  position: relative;
 
-	  width: 100%;                /* ← РАЗМЕР КАРУСЕЛИ */
+	  width: 100%;                
 	  max-width: 1000px;
 
 	  aspect-ratio: 16 / 9;
 	  border-radius: 14px;
 	  overflow: hidden;
 
-	  border: 1px solid rgba(255, 255, 255, 0.4);   /* ← ОБВОДКА */
+	  border: 1px solid rgba(255, 255, 255, 0.4);   
 	  box-shadow:
-		0 10px 30px rgba(0, 0, 0, 0.45),              /* ← ОСНОВНАЯ ТЕНЬ */
-		0 0 0 1px rgba(255,255,255,0.03);             /* ← МЯГКОЕ СВЕЧЕНИЕ */
+		0 10px 30px rgba(0, 0, 0, 0.45),
+		0 0 0 1px rgba(255,255,255,0.03);
 
 	  background: #000;
 	}
@@ -280,7 +272,6 @@
 	  opacity: 1;
 	}
 
-	/* === Связь с пунктами === */
 
 	.service {
 	  transition:
@@ -295,6 +286,32 @@
 	  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 	}
 
+  .text-link {
+    display: inline-block;
+    position: relative;
+  
+    color: var(--text);
+    text-decoration: none;
+  }
+  
+  .text-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+  
+    width: 100%;
+    height: 1px;
+    background: var(--text);
+  
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .text-link:hover::after {
+    transform: scaleX(1);
+  }
 
   </style>
 </head>
@@ -396,17 +413,17 @@
       <div class="about">
         <div class="card">
           <h3>Popular project</h3>
-          <p>450k Views</p>
+          <p>Description</p>
           <div style="margin-top:1rem; aspect-ratio:16/9; background:rgba(255,255,255,0.04); border:1px dashed var(--line); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.85rem;">Insert image</div>
         </div>
         <div class="card">
           <h3>Work in progress</h3>
-          <p>Full game-ready model of subway train</p>
+          <p>Description</p>
           <div style="margin-top:1rem; height:200px; background:rgba(255,255,255,0.04); border:1px dashed var(--line); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.85rem;">Insert image</div>
         </div>
         <div class="card">
           <h3>Experimental Piece</h3>
-          <p>Concept of Triple-A type of game</p>
+          <p>Description</p>
           <div style="margin-top:1rem; aspect-ratio:16/9; background:rgba(255,255,255,0.04); border:1px dashed var(--line); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.85rem;">Insert image</div>
         </div>
       </div>
@@ -429,10 +446,10 @@
         <div class="card">
           <h3>Links</h3>
           <p>
-            <a href="https://www.youtube.com/channel/UC4uI1v3uI9xhMdRSCdIs3Zw" style="color:var(--text); text-decoration:none;">YouTube</a><br>
-            <a href="https://panzoid.com/creations/search?q=user:Aiva" style="color:var(--text); text-decoration:none;">Panzoid</a><br>
-            <a href="https://okvpd.newgrounds.com/" style="color:var(--text); text-decoration:none;">Newgrounds</a><br>
-            <a href="https://github.com/solislabs" style="color:var(--text); text-decoration:none;">GitHub</a>
+            <a href="https://www.youtube.com/channel/UC4uI1v3uI9xhMdRSCdIs3Zw" class="text-link">YouTube</a><br>
+            <a href="https://panzoid.com/creations/search?q=user:Aiva" class="text-link">Panzoid</a><br>
+            <a href="https://github.com/solislabs" class="text-link">Github</a><br>
+            <a href="https://okvpd.newgrounds.com/" class="text-link">Newgrounds</a>
           </p>
         </div>
       </div>
@@ -462,7 +479,6 @@
 	let currentIndex = 0;
 	let interval;
 
-	/* Показ нужного слайда */
 	function showSlide(index) {
 	  visuals.forEach(v => v.classList.remove('active'));
 	  services.forEach(s => s.classList.remove('active'));
@@ -473,7 +489,6 @@
 	  currentIndex = index;
 	}
 
-	/* Автопрокрутка */
 	function startCarousel() {
 	  interval = setInterval(() => {
 		let next = (currentIndex + 1) % visuals.length;
@@ -481,7 +496,6 @@
 	  }, 3000);
 	}
 
-	/* Hover по пункту */
 	services.forEach((service, index) => {
 	  service.addEventListener('mouseenter', () => {
 		clearInterval(interval);
@@ -493,7 +507,7 @@
 	  });
 	});
 
-	/* Старт */
+	/* start */
 	showSlide(0);
 	startCarousel();
 
