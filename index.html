@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solis Labs - Website Portfolio</title>
+  <title>solis labs.</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #101112;
@@ -21,26 +22,63 @@
 
 	body {
 	  margin: 0;
-
 	  font-family: 'Inter', sans-serif;
 
-	  background: radial-gradient(1200px 900px at 70% -10%, #27272b, var(--bg));
+	  background: var(--bg);
 	  color: var(--text);
 	  line-height: 1.6;
 	  overflow-x: hidden;
+
+	  position: relative;
 	}
 
+	body::before {
+	  content: "";
+	  position: fixed;
+	  inset: -20%;
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.15), transparent 40%),
-                        radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,.12), transparent 40%),
-                        radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,.08), transparent 40%);
-      pointer-events: none;
-      z-index: 0;
-    }
+	  background:
+		radial-gradient(900px 900px at 20% 20%, rgba(70, 70, 100, 1), transparent 100%),
+		radial-gradient(900px 900px at 80% 10%, rgba(70, 70, 100, 1), transparent 100%),
+		radial-gradient(900px 900px at 60% 80%, rgba(60, 60, 90, 1), transparent 100%);
+
+	  opacity: 0.32;
+
+	  animation: ambientFloat 12s ease-in-out infinite alternate;
+
+	  pointer-events: none;
+	  z-index: 0;
+	}
+	
+	body::after {
+	  content: "";
+	  position: fixed;
+	  inset: 0;
+
+	  background:
+		repeating-radial-gradient(
+		  circle at 0 0,
+		  rgba(255,255,255,0.02),
+		  rgba(255,255,255,0.02) 1px,
+		  rgba(0,0,0,0.02) 2px
+		);
+
+	  opacity: 0.15;
+	  pointer-events: none;
+	  z-index: 1;
+	}
+
+	@keyframes ambientFloat {
+	  0% {
+		transform: translate(0px, 0px) scale(1);
+	  }
+	  50% {
+		transform: translate(-30px, 20px) scale(1.02);
+	  }
+	  100% {
+		transform: translate(30px, -20px) scale(1.04);
+	  }
+	}
 
     header, section, footer {
       position: relative;
@@ -59,11 +97,11 @@
 	header h1 {
 	  font-size: clamp(2.5rem, 5vw, 4rem);
 	  font-weight: 600;
-	  letter-spacing: 0.12em;
-	  text-transform: uppercase;
+	  letter-spacing: 0.05em;
+	  text-transform: lowercase;
 	  margin-bottom: 1rem;
 
-	  font-family: "Atkinson Hyperlegible Mono", sans-serif;
+	  font-family: "Space Grotesk", sans-serif;
 	}
 
 
@@ -92,7 +130,7 @@
 	}
 
 	.scroll-arrow {
-	  font-family: "Atkinson Hyperlegible Mono", monospace; /* UI / системное ощущение */
+	  font-family: "Atkinson Hyperlegible Mono", monospace;
 	  font-size: 1.2rem;
 	  letter-spacing: normal;
 	  line-height: 1;
@@ -127,14 +165,22 @@
       gap: 2rem;
     }
 
-    .card {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 2rem;
+	.card {
+	  background: rgba(255,255,255,0.035);
+	  border: 1px solid rgba(255,255,255,0.08);
+	  border-radius: 16px;
+
+	  backdrop-filter: blur(6px);
+	  -webkit-backdrop-filter: blur(6px);
+
+	  padding: 2rem;
 	  padding-top: 1rem;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
+
+	  transition: 
+		transform 0.4s ease, 
+		box-shadow 0.4s ease,
+		background 0.4s ease;
+	}
 
     .card:hover {
       transform: translateY(-6px);
@@ -213,7 +259,6 @@
       transform: translateY(0);
     }
 	
-	/* Scroll */
 	@keyframes arrowFloat {
 	  0% {
 		transform: translateY(0);
@@ -228,7 +273,6 @@
 		opacity: 0.4;
 	  }
 	}
-
 
 	.capabilities-visual {
 	  grid-column: 1 / -1;     
@@ -330,14 +374,110 @@
 	  display: block;
 	}
 
+	html {
+	  scroll-behavior: smooth;
+	}
 
+	.top-nav {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 75px;
+
+	  background: rgba(10, 10, 12, 0.35); /* полупрозрачный */
+	  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+	  z-index: 999;
+
+	  backdrop-filter: blur(32px) saturate(110%);
+	  -webkit-backdrop-filter: blur(14px) saturate(120%);
+	}
+
+	.nav-inner {
+	  max-width: 1300px;
+	  height: 100%;
+	  margin: 0 auto;
+	  padding: 0 2rem;
+
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	}
+
+	.nav-logo {
+	  font-family: "Space Grotesk", sans-serif;
+	  font-size: 1.8rem;
+	  letter-spacing: 0.05em;
+	  text-transform: lowercase;
+
+	  color: var(--text);
+	  cursor: pointer;
+	}
+
+	.nav-links {
+	  display: flex;
+	  gap: 2rem;
+	}
+
+	.nav-link {
+	  position: relative;
+
+	  font-size: 0.75rem;
+	  letter-spacing: 0.25em;
+	  text-transform: uppercase;
+
+	  color: var(--text-dim);
+	  text-decoration: none;
+
+	  transition: color 0.3s ease;
+	}
+
+	.nav-link::after {
+	  content: "";
+	  position: absolute;
+	  left: 0;
+	  bottom: -6px;
+
+	  width: 100%;
+	  height: 1px;
+	  background: var(--text);
+
+	  transform: scaleX(0);
+	  transform-origin: left;
+	  transition: transform 0.3s ease;
+	}
+
+	.nav-link:hover {
+	  color: var(--text);
+	}
+
+	.nav-link:hover::after {
+	  transform: scaleX(1);
+	}
+	
   </style>
 </head>
 <body>
+<nav class="top-nav">
+  <div class="nav-inner">
+
+    <div class="nav-logo">
+      solis labs.
+    </div>
+
+	<div class="nav-links">
+	  <a href="#capabilities" class="nav-link">capabilities</a>
+	  <a href="#works" class="nav-link">works</a>
+	  <a href="#contact" class="nav-link">contact</a>
+	</div>
+
+  </div>
+</nav>
 
   <header>
     <div>
-      <h1>solis labs</h1>
+      <h1>solis labs.</h1>
       <p>
         An independent audiovisual studio specializing in the creation of contemporary and engaging media projects.
       </p>
@@ -349,7 +489,7 @@
 
   <section>
     <div class="container reveal">
-      <h2>Showreel</h2>
+      <h2>2025 Showreel</h2>
 		<div class="video-wrapper">
 		<iframe 
 		  src="https://youtube.com/embed/u9YFEwySRiM"
@@ -362,26 +502,26 @@
 
   <section>
     <div class="container reveal">
-      <h2>What is Solis Labs</h2>
+      <h2>What is Solis Labs?</h2>
       <div class="about">
         <div class="card">
           <h3>One-person studio</h3>
           <p>
-            Solis Labs is a solo studio built around a unified creative workflow.
+            Solis Labs is a studio built around a unified creative workflow.
             One mind, one vision, full control over image, sound and rhythm.
           </p>
         </div>
         <div class="card">
           <h3>System thinking</h3>
           <p>
-            Projects are designed as systems, not isolated assets.
+            Projects are designed as complete systems.
             Visuals, animation and audio are developed together to reinforce meaning and mood.
           </p>
         </div>
         <div class="card">
           <h3>Experimental mindset</h3>
           <p>
-            Inspired by sci-fi, minimalism and digital space.
+            Inspired by sci-fi, minimalism and digital industry.
             Each project is treated as a small universe with its own rules.
           </p>
         </div>
@@ -389,43 +529,43 @@
     </div>
   </section>
 
-  <section>
+  <section id="capabilities">
     <div class="container reveal">
       <h2>Core Capabilities</h2>
       <div class="services">
         <div class="service">
           <span>01</span>
           <h4>Video & Editing</h4>
-          <p>Rhythm-driven editing, narrative pacing, visual clarity.</p>
+          <p>Premiere Pro, After Effects, Photoshop.</p>
         </div>
         <div class="service">
           <span>02</span>
           <h4>Sound & Music</h4>
-          <p>Sound design, music composition, atmosphere and emotion.</p>
+          <p>FL Studio, Native Instruments, Arturia, iZotope, Waves Bundles.</p>
         </div>
         <div class="service">
           <span>03</span>
           <h4>Motion & 2D/3D</h4>
-          <p>Motion graphics, basic 3D scenes, abstract animation.</p>
+          <p>Blender, Cinema 4D, Unreal Engine, Substance Painter.</p>
         </div>
         <div class="service">
           <span>04</span>
           <h4>Audiovisual Systems</h4>
-          <p>Integrated pipelines for games, trailers, and experimental media.</p>
+          <p>Touch Designer.</p>
         </div>
 		<div class="capabilities-visual">
 		  <div class="visual-carousel">
-			<img src="video.jpg" class="visual active" data-index="0">
-			<img src="sound.jpg" class="visual" data-index="1">
-			<img src="motion.jpg" class="visual" data-index="2">
-			<img src="systems.jpg" class="visual" data-index="3">
+			<img src="video.png" class="visual active" data-index="0">
+			<img src="sound.png" class="visual" data-index="1">
+			<img src="motion.png" class="visual" data-index="2">
+			<img src="systems.png" class="visual" data-index="3">
 		  </div>
 		</div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="works">
     <div class="container reveal">
       <h2>Selected Works</h2>
       <div class="about">
@@ -433,7 +573,7 @@
           <h3>Last project</h3>
           <p>Made with blender</p>
           <div class="work-preview">
-            <img src="bg1.png" alt="Popular project">
+            <img src="bg4.png" alt="Popular project">
           </div>
         </div>
         <div class="card">
@@ -454,7 +594,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="contact">
     <div class="container reveal">
       <h2>Contact</h2>
       <div class="about">
