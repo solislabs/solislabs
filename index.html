@@ -385,7 +385,7 @@
 	  width: 100%;
 	  height: 75px;
 
-	  background: rgba(10, 10, 12, 0.35); /* полупрозрачный */
+	  background: rgba(10, 10, 12, 0.35);
 	  border-bottom: 1px solid rgba(255,255,255,0.08);
 
 	  z-index: 999;
@@ -455,6 +455,114 @@
 	.nav-link:hover::after {
 	  transform: scaleX(1);
 	}
+	
+	@media (max-width: 768px) {
+	  .top-nav {
+		height: 60px;
+	  }
+
+	  .nav-logo {
+		font-size: 1.3rem;
+		letter-spacing: 0.03em;
+	  }
+
+	  .nav-link {
+		font-size: 0.65rem;
+		letter-spacing: 0.18em;
+	  }
+
+	  .nav-inner {
+		padding: 0 1rem;
+	  }
+	
+	  body::before {
+		animation: none;
+		transform: none;
+	  }
+	  
+	  .card {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		background: rgba(255,255,255,0.04);
+	  }
+	}
+	 
+	@media (max-width: 768px) {
+	  .services {
+		grid-template-columns: 1fr;
+		min-height: 260px;
+	  }
+
+	  .service span {
+		display: none;
+	  }
+
+	  .service p {
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+		transition: 
+		  max-height 0.4s ease,
+		  opacity 0.3s ease;
+	  }
+
+	  .service.active p {
+		max-height: 200px;
+		opacity: 1;
+		margin-top: 0.4rem;
+	  }
+
+	}
+	
+	@media (max-width: 768px) {
+	  .service {
+		border-left: none;
+		border-bottom: 1px solid var(--line);
+		position: relative;
+		padding: 0.6rem 0;
+		background: transparent;
+	  }
+
+	  .service h4 {
+		font-size: 0.95rem;
+		margin: 0;
+		line-height: 0.2;
+	  }
+
+	  .service.active {
+		padding: 0.5rem 0.5;
+		background: rgba(255,255,255,0.02);
+	  }
+		  
+	  .service p {
+		max-height: 0;
+		opacity: 0;
+		overflow: hidden;
+		transition: 
+		  max-height 0.35s ease,
+		  opacity 0.25s ease;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 100%;
+		max-height: none;
+		opacity: 0;
+		transform: translateY(-6px);
+		pointer-events: none;
+	  }
+
+	  .service.active p {
+		max-height: 200px;
+		transform: translateY(0);
+		opacity: 1;
+		margin-top: 0.4rem;
+		pointer-events: auto;
+	  }
+
+
+
+	}
+
 	
   </style>
 </head>
@@ -621,7 +729,7 @@
   </section>
 
   <footer>
-    © Solis Labs - Independent Audiovisual Studio
+    © Solis Labs
   </footer>
 
   <script>
@@ -671,7 +779,6 @@
 	  });
 	});
 
-	/* start */
 	showSlide(0);
 	startCarousel();
 
