@@ -6,764 +6,920 @@
 <title>solis labs.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
 
 <style>
-	:root {
-	  --bg: #101112;
-	  --bg-soft: #1a1a1c;
-	  --text: #e5e7eb;
-	  --text-dim: #9ca3af;
-	  --accent: #8b8f99;
-	  --line: rgba(255,255,255,0.08);
-	}
 
-	* { box-sizing: border-box; }
+:root {
+  --bg:       #080c18;
+  --bg-soft:  #060810;
+  --text:     #e5e7eb;
+  --text-dim: #9ca3af;
+  --accent:   #8b8f99;
+  --line:     rgba(255,255,255,0.08);
+}
 
-	body {
-	  margin: 0;
-	  font-family: 'Inter', sans-serif;
+* { box-sizing: border-box; }
 
-	  background: var(--bg);
-	  color: var(--text);
-	  line-height: 1.6;
-	  overflow-x: hidden;
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
 
-	  position: relative;
-	}
-
-	body::before {
-	  content: "";
-	  position: fixed;
-	  inset: -20%;
-
-	  background:
-		radial-gradient(900px 900px at 20% 20%, rgba(70, 70, 100, 1), transparent 100%),
-		radial-gradient(900px 900px at 80% 10%, rgba(70, 70, 100, 1), transparent 100%),
-		radial-gradient(900px 900px at 60% 80%, rgba(60, 60, 90, 1), transparent 100%);
-
-	  opacity: 0.32;
-
-	  animation: ambientFloat 12s ease-in-out infinite alternate;
-
-	  pointer-events: none;
-	  z-index: 0;
-	}
-		
-	body::after {
-	  content: "";
-	  position: fixed;
-	  inset: 0;
-
-	  background:
-		repeating-radial-gradient(
-		  circle at 0 0,
-		  rgba(255,255,255,0.02),
-		  rgba(255,255,255,0.02) 1px,
-		  rgba(0,0,0,0.02) 2px
-		);
-
-	  opacity: 0.15;
-	  pointer-events: none;
-	  z-index: 1;
-	}
-
-	@keyframes ambientFloat {
-	  0% {transform: translate(0px,0px) scale(1);}
-	  50% {transform: translate(-30px,20px) scale(1.02);}
-	  100% {transform: translate(30px,-20px) scale(1.04);}
-	}
-
-	header, section, footer {
-	  position: relative;
-	  z-index: 1;
-	}
-
-	header {
-	  min-height: 100vh;
-	  display:flex;
-	  align-items:center;
-	  justify-content:center;
-	  text-align:center;
-	  padding:4rem 1.5rem;
-	}
-
-	header h1{
-	  font-size:clamp(2.5rem,5vw,4rem);
-	  font-weight:600;
-	  letter-spacing:.05em;
-	  text-transform:lowercase;
-	  margin-bottom:1rem;
-	  font-family:"Space Grotesk",sans-serif;
-	}
+body,
+.card,
+.service,
+.nav-island,
+.nav-options-island,
+.bg-orb,
+.text-link,
+.nav-logo,
+.nav-link,
+.theme-icon,
+.slider {
+  transition: background 0.4s ease, background-color 0.4s ease,
+              color 0.4s ease, border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
 
 
-	header p {
-	  max-width: 680px;
-	  margin: 0 auto 2rem;
-	  color: var(--text-dim);
-	  font-size: 1.05rem;
-	}
+.bg-orb {
+  will-change: transform;
+  transform: translateZ(0); 
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
+  position: fixed;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+  filter: blur(200px);
+}
 
-	.scroll {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  gap: 0.4rem;
-	  font-size: 0.75rem;
-	  color: var(--text-dim);
-	  letter-spacing: 0.25em;
-	  text-transform: uppercase;
-	  opacity: 0.6;
-	}
-		
-	.scroll-text {
-	  font-family: 'Inter', sans-serif;
-	}
+.orb1 {
+  top: -200px; left: -150px;
+  background: radial-gradient(circle, rgba(30,20,67,1), transparent 100%);
+  animation: float1 18s ease-in-out infinite alternate;
+}
+.orb2 {
+  top: -150px; right: -200px;
+  background: radial-gradient(circle, rgba(27,27,90,1), transparent 100%);
+  animation: float2 22s ease-in-out infinite alternate;
+}
+.orb3 {
+  bottom: -250px; left: 40%;
+  background: radial-gradient(circle, rgba(30,20,67,1), transparent 100%);
+  animation: float3 20s ease-in-out infinite alternate;
+}
 
-	.scroll-arrow {
-	  font-family: "Atkinson Hyperlegible Mono", monospace;
-	  font-size: 1.2rem;
-	  letter-spacing: normal;
-	  line-height: 1;
-	  opacity: 0.8;
-	  animation: arrowFloat 1.8s ease-in-out infinite;
-	}
+body.light .orb1 { background: radial-gradient(circle, rgba(110,180,70,0.8),  transparent 100%); }
+body.light .orb2 { background: radial-gradient(circle, rgba(80,160,90,0.8),   transparent 100%); }
+body.light .orb3 { background: radial-gradient(circle, rgba(130,190,60,0.8),  transparent 100%); }
 
-    section {
-      padding: 5rem 1.5rem;
-      border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.008));
-    }
+@keyframes float1 {
+  0%   { transform: translate(0px,  0px);  }
+  50%  { transform: translate(40px,-20px); }
+  100% { transform: translate(-20px,30px); }
+}
+@keyframes float2 {
+  0%   { transform: translate(0px,  0px); }
+  50%  { transform: translate(-30px,40px); }
+  100% { transform: translate(20px,-10px); }
+}
+@keyframes float3 {
+  0%   { transform: translate(0px,  0px);   }
+  50%  { transform: translate(25px, 30px);  }
+  100% { transform: translate(-35px,-20px); }
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-
-	.card {
-	  background: rgba(255,255,255,0.035);
-	  border: 1px solid rgba(255,255,255,0.08);
-	  border-radius: 16px;
-
-	  backdrop-filter: blur(6px);
-	  -webkit-backdrop-filter: blur(6px);
-
-	  padding: 2rem;
-	  padding-top: 1rem;
-
-	  transition: 
-		transform 0.4s ease, 
-		box-shadow 0.4s ease,
-		background 0.4s ease;
-	}
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .card h3 {
-      font-weight: 500;
-      margin-bottom: 0.8rem;
-    }
-
-    .card p {
-      color: var(--text-dim);
-      font-size: 0.95rem;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service {
-      padding: 1.5rem;
-      border-left: 2px solid var(--accent);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .service span {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-    }
-
-    .service h4 {
-      margin: 0.5rem 0 0.6rem;
-      font-weight: 500;
-    }
-
-    .service p {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-
-    footer {
-      padding: 3rem 1.5rem;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(15px);
-      transition: all 0.5s ease;
-    }
-	
-	.video-wrapper {
-	  position: relative;
-	  padding-top: 56.25%; /* 16:9 */
-	}
-
-	.video-wrapper iframe {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	}
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-	
-	@keyframes arrowFloat {
-	  0% {
-		transform: translateY(0);
-		opacity: 0.4;
-	  }
-	  50% {
-		transform: translateY(6px);
-		opacity: 0.9;
-	  }
-	  100% {
-		transform: translateY(0);
-		opacity: 0.4;
-	  }
-	}
-
-	.capabilities-visual {
-	  grid-column: 1 / -1;     
-	  margin-top: 3rem;
-	  display: flex;
-	  justify-content: center; 
-	}
+header, section, footer, nav { position: relative; z-index: 2; }
 
 
-	.visual-carousel {
-	  position: relative;
+#stars-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
 
-	  width: 100%;                
-	  max-width: 1000px;
+header > div { position: relative; z-index: 1; }
 
-	  aspect-ratio: 16 / 9;
-	  border-radius: 14px;
-	  overflow: hidden;
 
-	  border: 1px solid rgba(255, 255, 255, 0.4);   
-	  box-shadow:
-		0 10px 30px rgba(0, 0, 0, 0.45),
-		0 0 0 1px rgba(255,255,255,0.03);
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: .04em;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
 
-	  background: #000;
-	}
+.nav-link {
+  font-size: .72rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color .25s;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active { color: white; }
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 100%; height: 1px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+
+.nav-link:hover::after { transform: scaleX(1); }
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.moon {
+  opacity: 0;
+  transition: opacity .35s;
+  fill: var(--text);
+  stroke: none;
+}
+
+.sun, .rays { transition: opacity .35s; }
+body.light .sun, body.light .rays { opacity: 0; }
+body.light .moon { opacity: 1; }
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .7rem;
+  letter-spacing: .2em;
+}
+
+.lang-toggle {
+  position: relative;
+  width: 46px;
+  height: 22px;
+}
+
+.lang-toggle input { display: none; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.15);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px; height: 18px;
+  left: 2px; top: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: transform .25s;
+}
+
+.lang-toggle input:checked + .slider::before { transform: translateX(24px); }
+
+
+.nav-island {
+  border-radius: 14px;
+  background: rgba(10,12,24,.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.12);
+}
 
 
 
-	.visual {
-	  position: absolute;
-	  inset: 0;
-	  width: 100%;
-	  height: 100%;
-	  object-fit: cover;
+.nav-desktop {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 36px;
+  z-index: 999;
+}
 
-	  opacity: 0;
-	  transition: opacity 0.5s ease;
-	}
+.nav-desktop-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: 56px;
+}
 
-	.visual.active {
-	  opacity: 1;
-	}
+.nav-desktop .nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-options-island {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 0 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 999;
+}
 
 
-	.service {
-	  transition:
-		transform 0.4s ease,
-		background 0.4s ease,
-		box-shadow 0.4s ease;
-	}
+body.light .nav-island {
+  background: rgba(255,255,255,.5);
+  border-color: rgba(0,0,0,.1);
+}
 
-	.service.active {
-	  transform: translateY(-10px);
-	  background: rgba(255,255,255,0.05);
-	  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-	}
+body.light .nav-logo      { color: #1a2d0a; }
+body.light .nav-link      { color: #4a6020; }
+body.light .nav-link:hover,
+body.light .nav-link.active { color: #1a2d0a; }
+body.light .nav-link::after { background: #1a2d0a; }
 
-  .text-link {
-    display: inline-block;
-    position: relative;
-  
-    color: var(--text);
-    text-decoration: none;
+body.light .menu-toggle span { background: #1a2d0a; }
+
+body.light .theme-icon    { stroke: #1a2d0a; }
+body.light .moon          { fill:   #1a2d0a; }
+
+body.light .lang-switch   { color: #1a2d0a; }
+body.light .slider        { background: rgba(0,0,0,.18); }
+body.light .slider::before { background: #1a2d0a; }
+
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  z-index: 999;
+}
+
+.nav-mobile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+}
+
+.nav-mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+  opacity: 0;
+  transition:
+    max-height .45s ease,
+    opacity    .35s ease,
+    padding    .35s ease;
+}
+
+.nav-mobile.open .nav-mobile-menu {
+  max-height: 320px;
+  padding: 20px;
+  opacity: 1;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 22px;
+  height: 2px;
+  background: white;
+  display: block;
+}
+
+
+html { scroll-behavior: smooth; }
+
+header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
+}
+
+header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: lowercase;
+  margin-bottom: 1rem;
+}
+
+header p {
+  max-width: 680px;
+  margin: 0 auto 2rem;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+section {
+  padding: 5rem 1.5rem;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.008));
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--text-dim);
+  font-size: .85rem;
+  position: relative;
+  z-index: 2;
+}
+
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  font-size: .75rem;
+  color: var(--text-dim);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  opacity: .8;
+  animation: arrowFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowFloat {
+  0%   { transform: translateY(0);   opacity: .4; }
+  50%  { transform: translateY(6px); opacity: .9; }
+  100% { transform: translateY(0);   opacity: .4; }
+}
+
+
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+}
+
+.card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  padding-top: 1rem;
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    background .4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card h3 { font-weight: 500; margin-bottom: .8rem; }
+.card p  { color: var(--text-dim); font-size: .95rem; }
+
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.service {
+  padding: 1.5rem;
+  border-left: 2px solid var(--accent);
+  background: rgba(255,255,255,0.02);
+  transition:
+    transform .4s ease,
+    background .4s ease,
+    box-shadow .4s ease;
+}
+
+.service span {
+  font-size: .75rem;
+  letter-spacing: .2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.service h4 { margin: .5rem 0 .6rem; font-weight: 500; }
+.service p  { font-size: .9rem; color: var(--text-dim); }
+
+.service.active {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+body.light .service {
+  background: rgba(255,255,255,0.15);
+  border-left-color: rgba(255,255,255,0.1);
+}
+
+body.light .service.active {
+  background: rgba(255,255,255,0.28);
+}
+
+.capabilities-visual {
+  grid-column: 1 / -1;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.visual-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.03);
+  background: #000;
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.visual.active { opacity: 1; }
+
+
+.video-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+
+.work-preview {
+  margin-top: 1rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+}
+
+.work-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.text-link {
+  display: inline-block;
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.text-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.text-link:hover::after { transform: scaleX(1); }
+
+
+.reveal {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all .5s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+body.light {
+  --bg:       #dce8c5;
+  --bg-soft:  #cfe0b5;
+  --text:     #1a2d0a;
+  --text-dim: #4a6020;
+  --accent:   #6a8840;
+  --line:     rgba(0,0,0,0.1);
+}
+
+body.light .card {
+  background: rgba(255,255,255,.4);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.06),
+    0 2px 6px rgba(0,0,0,0.04);
+}
+
+body.light .card:hover {
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+@media (max-width: 768px) {
+
+  .nav-desktop,
+  .nav-options-island { display: none; }
+
+  .nav-mobile { display: block; }
+
+  .bg-orb {
+    width: 650px;
+    height: 650px;
+    filter: blur(650px);
+    opacity: 0.9;
   }
-  
-  .text-link::after {
-    content: "";
+
+  .card {
+    background: rgba(255,255,255,0.04);
+  }
+
+
+  .services { grid-template-columns: 1fr; }
+
+  .service {
+    position: relative;
+    border-left: none;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    padding: .8rem 0;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .service span { display: none; }
+
+  .service h4 {
+    font-size: .95rem;
+    margin: 0;
+    line-height: 1.4;
+	padding-left: 12px;
+  }
+
+  .service p {
     position: absolute;
     left: 0;
-    bottom: -2px;
-  
-    width: 100%;
-    height: 1px;
-    background: var(--text);
-  
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    margin: 0;
+	
+    background: rgba(15, 18, 35, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0 .8rem;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height .65s ease,
+      opacity    .55s ease,
+      padding    .35s ease;
+  }
+
+  .service.active {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .service.active p {
+    max-height: 200px;
+    opacity: 1;
+    padding: .8rem;
   }
   
-  .text-link:hover::after {
-    transform: scaleX(1);
+  body.light .service p {
+    background: rgba(230, 238, 215, 0.87);
+    border-color: rgba(0,0,0,0.1);
   }
-  
-	.work-preview {
-	  margin-top: 1rem;
-	  aspect-ratio: 16 / 9;
-	  border-radius: 10px;
-	  overflow: hidden;
-	  border: 1px solid var(--line);
-	  background: rgba(255,255,255,0.03);
-	}
 
-	.work-preview img {
-	  width: 100%;
-	  height: 100%;
-	  object-fit: cover;
-	  display: block;
-	}
+}
 
-	html {
-	  scroll-behavior: smooth;
-	}
-
-	.top-nav{
-
-	position:fixed;
-
-	top:24px;
-	left:50%;
-
-	transform:translateX(-50%);
-
-	width:auto;
-
-	padding:0 22px;
-
-	border-radius:15px;
-
-	background:rgba(20,20,22,.65);
-
-	border:none;
-
-	backdrop-filter:blur(20px) saturate(140%);
-
-	z-index:999;
-
-	box-shadow:
-	0 10px 30px rgba(0,0,0,.45),
-	0 0 0 1px rgba(255,255,255,.03);
-
-	}
-
-	.top-nav::before{
-
-	content:"";
-	position:absolute;
-	inset:0;
-
-	border-radius:15px;
-
-	background:linear-gradient(
-	120deg,
-	rgba(255,255,255,.08),
-	rgba(255,255,255,0)
-	);
-
-	pointer-events:none;
-
-	}
-
-	.nav-inner{
-	display:flex;
-	align-items:center;
-	height:56px;
-	}
-
-	.nav-links{
-	display:flex;
-	gap:28px;
-	margin-left:240px;
-	}
-
-	.nav-logo{
-
-	font-family:"Space Grotesk",sans-serif;
-	font-size:1.4rem;
-
-	letter-spacing:.04em;
-
-	cursor:pointer;
-
-	}
-
-	.nav-link{
-
-	font-size:.72rem;
-
-	letter-spacing:.25em;
-
-	text-transform:uppercase;
-
-	color:var(--text-dim);
-
-	text-decoration:none;
-
-	transition:.25s;
-
-	position:relative;
-
-	}
-
-	.nav-link:hover{
-	color:white;
-	}
-
-	.nav-link.active{
-	color:white;
-	}
-
-	.nav-link::after{
-
-	content:"";
-	position:absolute;
-	left:0;
-	bottom:-6px;
-
-	width:100%;
-	height:1px;
-
-	background:white;
-
-	transform:scaleX(0);
-	transform-origin:left;
-
-	transition:.3s;
-
-	}
-
-	.nav-link:hover::after{
-	transform:scaleX(1);
-	}
-	
-	@media (max-width: 768px) {
-	  .top-nav {
-		height: 60px;
-	  }
-
-	  .nav-logo {
-		font-size: 1.3rem;
-		letter-spacing: 0.03em;
-	  }
-
-	  .nav-link {
-		font-size: 0.52rem;
-		letter-spacing: 0.09em;
-	  }
-
-	  .nav-inner {
-		padding: 0 1rem;
-	  }
-	
-	  body::before {
-		animation: none;
-		transform: none;
-	  }
-	  
-	  .card {
-		backdrop-filter: none;
-		-webkit-backdrop-filter: none;
-		background: rgba(255,255,255,0.04);
-	  }
-	}
-	 
-	@media (max-width: 768px) {
-	  .services {
-		grid-template-columns: 1fr;
-		min-height: 260px;
-	  }
-
-	  .service span {
-		display: none;
-	  }
-
-	  .service p {
-		max-height: 0;
-		opacity: 0;
-		overflow: hidden;
-		transition: 
-		  max-height 0.4s ease,
-		  opacity 0.3s ease;
-	  }
-
-	  .service.active p {
-		max-height: 200px;
-		opacity: 1;
-		margin-top: 0.4rem;
-	  }
-
-	}
-	
-	@media (max-width: 768px) {
-	  .service {
-		border-left: none;
-		border-bottom: 1px solid var(--line);
-		position: relative;
-		padding: 0.6rem 0;
-		background: transparent;
-	  }
-
-	  .service h4 {
-		font-size: 0.95rem;
-		margin: 0;
-		line-height: 0.2;
-	  }
-
-	  .service.active {
-		padding: 0.5rem 0.5;
-		background: rgba(255,255,255,0.02);
-	  }
-		  
-	  .service p {
-		max-height: 0;
-		opacity: 0;
-		overflow: hidden;
-		transition: 
-		  max-height 0.35s ease,
-		  opacity 0.25s ease;
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 100%;
-		max-height: none;
-		opacity: 0;
-		transform: translateY(-6px);
-		pointer-events: none;
-	  }
-
-	  .service.active p {
-		max-height: 200px;
-		transform: translateY(0);
-		opacity: 1;
-		margin-top: 0.4rem;
-		pointer-events: auto;
-	  }
-
-
-
-	}
-
-	
-  </style>
+</style>
 </head>
 <body>
-<nav class="top-nav">
-  <div class="nav-inner">
 
-    <div class="nav-logo">
-      solis labs.
+
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+
+<nav class="nav-desktop nav-island">
+  <div class="nav-desktop-inner">
+    <a href="#" class="nav-logo">solis labs.</a>
+    <div class="nav-links">
+      <a href="#showreel" class="nav-link" data-i18n="nav.showreel">showreel</a>
+      <a href="#works"    class="nav-link" data-i18n="nav.works">works</a>
+      <a href="#contact"  class="nav-link" data-i18n="nav.contact">contact</a>
     </div>
-
-	<div class="nav-links">
-	  <a href="#capabilities" class="nav-link">capabilities</a>
-	  <a href="#works" class="nav-link">works</a>
-	  <a href="#contact" class="nav-link">contact</a>
-	</div>
-
   </div>
 </nav>
 
-  <header>
-    <div>
-      <h1>solis labs.</h1>
-      <p>
-        An independent audiovisual studio specializing in the creation of contemporary and engaging media projects.
-      </p>
-      <div class="scroll">
-		<span class="scroll-text">Scroll</span>
-		<span class="scroll-arrow">˅</span>
-	</div>
-  </header>
 
-  <section>
-    <div class="container reveal">
-      <h2>2025 Showreel</h2>
-		<div class="video-wrapper">
-		<iframe 
-		  src="https://youtube.com/embed/u9YFEwySRiM"
-		  frameborder="0"
-		  allow="fullscreen; picture-in-picture"
-		  allowfullscreen>
-		</iframe>
-	</div>
-	</div>
-   </section>
+<div class="nav-options-island nav-island">
 
-  <section>
-    <div class="container reveal">
-      <h2>What is Solis Labs?</h2>
-      <div class="about">
-        <div class="card">
-          <h3>One-person studio</h3>
-          <p>
-            Solis Labs is a studio built around a unified creative workflow.
-            One mind, one vision, full control over image, sound and rhythm.
-          </p>
-        </div>
-        <div class="card">
-          <h3>System thinking</h3>
-          <p>
-            Projects are designed as complete systems.
-            Visuals, animation and audio are developed together to reinforce meaning and mood.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Experimental mindset</h3>
-          <p>
-            Inspired by sci-fi, minimalism and digital industry.
-            Each project is treated as a small universe with its own rules.
-          </p>
+  <button class="theme-toggle" aria-label="Toggle theme">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none">
+      <circle class="sun" cx="12" cy="12" r="5"/>
+      <g class="rays">
+        <line x1="12"    y1="1"     x2="12"    y2="4"/>
+        <line x1="12"    y1="20"    x2="12"    y2="23"/>
+        <line x1="4.22"  y1="4.22"  x2="6.34"  y2="6.34"/>
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+        <line x1="1"     y1="12"    x2="4"     y2="12"/>
+        <line x1="20"    y1="12"    x2="23"    y2="12"/>
+        <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66"/>
+        <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"/>
+      </g>
+      <path class="moon" d="M21 12.5A8.5 8.5 0 1 1 11.5 3A7 7 0 0 0 21 12.5Z"/>
+    </svg>
+  </button>
+
+  <div class="lang-switch">
+    <span>EN</span>
+    <label class="lang-toggle">
+      <input type="checkbox" id="lang-desktop">
+      <span class="slider"></span>
+    </label>
+    <span>DE</span>
+  </div>
+
+</div>
+
+
+<nav class="nav-mobile nav-island">
+
+  <div class="nav-mobile-top">
+    <a href="#" class="nav-logo">solis labs.</a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile-menu">
+      <a href="#showreel" class="nav-link" data-i18n="nav.showreel">showreel</a>
+      <a href="#works"    class="nav-link" data-i18n="nav.works">works</a>
+      <a href="#contact"  class="nav-link" data-i18n="nav.contact">contact</a>
+
+    <div class="lang-switch">
+      <span>EN</span>
+      <label class="lang-toggle">
+        <input type="checkbox" id="lang-mobile">
+        <span class="slider"></span>
+      </label>
+      <span>DE</span>
+    </div>
+
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg class="theme-icon" viewBox="0 0 24 24" fill="none">
+        <circle class="sun" cx="12" cy="12" r="5"/>
+        <g class="rays">
+          <line x1="12"    y1="1"     x2="12"    y2="4"/>
+          <line x1="12"    y1="20"    x2="12"    y2="23"/>
+          <line x1="4.22"  y1="4.22"  x2="6.34"  y2="6.34"/>
+          <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+          <line x1="1"     y1="12"    x2="4"     y2="12"/>
+          <line x1="20"    y1="12"    x2="23"    y2="12"/>
+          <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66"/>
+          <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"/>
+        </g>
+        <path class="moon" d="M21 12.5A8.5 8.5 0 1 1 11.5 3A7 7 0 0 0 21 12.5Z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<header>
+  <canvas id="stars-canvas"></canvas>
+  <div>
+    <h1>solis labs.</h1>
+    <p data-i18n="hero.subtitle">An independent audiovisual studio specializing in the creation of contemporary and engaging media projects.</p>
+    <div class="scroll">
+      <span>Scroll</span>
+      <span class="scroll-arrow">˅</span>
+    </div>
+  </div>
+</header>
+
+<section id="showreel">
+  <div class="container reveal">
+    <h2>2025 Showreel</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://youtube.com/embed/u9YFEwySRiM"
+        frameborder="0"
+        allow="fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container reveal">
+    <h2 data-i18n="about.title">What is Solis Labs?</h2>
+    <div class="about">
+      <div class="card">
+        <h3 data-i18n="about.card1.title">One-person studio</h3>
+        <p data-i18n="about.card1.text">Solis Labs is a studio built around a unified creative workflow. One mind, one vision, full control over image, sound and rhythm.</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="about.card2.title">System thinking</h3>
+        <p data-i18n="about.card2.text">Projects are designed as complete systems. Visuals, animation and audio are developed together to reinforce meaning and mood.</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="about.card3.title">Experimental mindset</h3>
+        <p data-i18n="about.card3.text">Inspired by sci-fi, minimalism and digital industry. Each project is treated as a small universe with its own rules.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities">
+  <div class="container reveal">
+    <h2 data-i18n="cap.title">Core Capabilities</h2>
+    <div class="services">
+      <div class="service">
+        <span>01</span>
+        <h4 data-i18n="cap.s1.title">Video &amp; Editing</h4>
+        <p>Premiere Pro, After Effects, Photoshop.</p>
+      </div>
+      <div class="service">
+        <span>02</span>
+        <h4 data-i18n="cap.s2.title">Sound &amp; Music</h4>
+        <p>FL Studio, Arturia, iZotope, Waves Bundles.</p>
+      </div>
+      <div class="service">
+        <span>03</span>
+        <h4>Motion &amp; 2D/3D</h4>
+        <p>Blender, Cinema 4D, Unreal Engine.</p>
+      </div>
+      <div class="service">
+        <span>04</span>
+        <h4 data-i18n="cap.s4.title">Audiovisual Systems</h4>
+        <p>Touch Designer.</p>
+      </div>
+      <div class="capabilities-visual">
+        <div class="visual-carousel">
+          <img src="video.png"   class="visual active" data-index="0" alt="Video &amp; Editing">
+          <img src="sound.png"   class="visual"        data-index="1" alt="Sound &amp; Music">
+          <img src="motion.png"  class="visual"        data-index="2" alt="Motion &amp; 3D">
+          <img src="systems.png" class="visual"        data-index="3" alt="Audiovisual Systems">
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="capabilities">
-    <div class="container reveal">
-      <h2>Core Capabilities</h2>
-      <div class="services">
-        <div class="service">
-          <span>01</span>
-          <h4>Video & Editing</h4>
-          <p>Premiere Pro, After Effects, Photoshop.</p>
-        </div>
-        <div class="service">
-          <span>02</span>
-          <h4>Sound & Music</h4>
-          <p>FL Studio, Arturia, iZotope, Waves Bundles.</p>
-        </div>
-        <div class="service">
-          <span>03</span>
-          <h4>Motion & 2D/3D</h4>
-          <p>Blender, Cinema 4D, Unreal Engine.</p>
-        </div>
-        <div class="service">
-          <span>04</span>
-          <h4>Audiovisual Systems</h4>
-          <p>Touch Designer.</p>
-        </div>
-		<div class="capabilities-visual">
-		  <div class="visual-carousel">
-			<img src="video.png" class="visual active" data-index="0">
-			<img src="sound.png" class="visual" data-index="1">
-			<img src="motion.png" class="visual" data-index="2">
-			<img src="systems.png" class="visual" data-index="3">
-		  </div>
+<section id="works">
+  <div class="container reveal">
+    <h2 data-i18n="works.title">Selected Works</h2>
+    <div class="about">
+      <div class="card">
+        <h3 data-i18n="works.card1.title">Last project</h3>
+        <p data-i18n="works.card1.text">Made with Blender</p>
+        <div class="work-preview"><img src="bg4.png" width="800" height="450" alt="Last project"></div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="works.card2.title">Favorite artstyle</h3>
+        <p data-i18n="works.card2.text">Made with Cinema 4D</p>
+        <div class="work-preview"><img src="bg2.png" width="800" height="450" alt="Favorite artstyle"></div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="works.card3.title">Popular project</h3>
+        <p data-i18n="works.card3.text">Made with Panzoid</p>
+        <div class="work-preview"><img src="bg3.jpg" width="800" height="450" alt="Popular project"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container reveal">
+    <h2 data-i18n="contact.title">Contact</h2>
+    <div class="about">
+		<div class="card">
+		  <h3 data-i18n="contact.card1.title">Get in touch</h3>
+		  <p>
+			<span data-i18n="contact.card1.text">Solis Labs is open for collaboration, internships and media projects.</span>
+			<br><br>
+			<strong>Email:</strong> solis.iso@hotmail.com<br>
+			<strong data-i18n="contact.location.label">Location:</strong>
+			<span data-i18n="contact.location.value"> Germany / Remote</span>
+		  </p>
 		</div>
+      <div class="card">
+        <h3>Links</h3>
+        <p>
+          <a href="https://www.instagram.com/okvpd_/"                       class="text-link">Instagram</a><br>
+          <a href="https://okvpd.newgrounds.com/"                           class="text-link" data-i18n="contact.card4.title">My music</a><br>
+          <a href="https://panzoid.com/creations/search?q=user:Aiva"        class="text-link" data-i18n="contact.card5.title">Old works</a><br>
+          <a href="https://github.com/solislabs"                            class="text-link" data-i18n="contact.card6.title">Website source code</a>
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="works">
-    <div class="container reveal">
-      <h2>Selected Works</h2>
-      <div class="about">
-        <div class="card">
-          <h3>Last project</h3>
-          <p>Made with blender</p>
-          <div class="work-preview">
-            <img src="bg4.png" alt="Popular project">
-          </div>
-        </div>
-        <div class="card">
-          <h3>Favorite artstyle</h3>
-          <p>Made with Cinema 4D</p>
-          <div class="work-preview">
-            <img src="bg2.png" alt="Popular project">
-          </div>
-        </div>
-        <div class="card">
-          <h3>Popular project</h3>
-          <p>Made with Panzoid</p>
-          <div class="work-preview">
-            <img src="bg3.jpg" alt="Popular project">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container reveal">
-      <h2>Contact</h2>
-      <div class="about">
-        <div class="card">
-          <h3>Get in touch</h3>
-          <p>
-            Solis Labs is open for collaboration, internships and media projects.
-            <br><br>
-            <strong>Email:</strong> solis.iso@hotmail.com<br>
-            <strong>Location:</strong> Germany / Remote
-          </p>
-        </div>
-        <div class="card">
-          <h3>Links</h3>
-          <p>
-            <a href="https://www.instagram.com/okvpd_/" class="text-link">Instagram</a><br>
-			<a href="https://okvpd.newgrounds.com/" class="text-link">My music</a><br>
-            <a href="https://panzoid.com/creations/search?q=user:Aiva" class="text-link">Old works</a><br>
-            <a href="https://github.com/solislabs" class="text-link">Website source code</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © Solis Labs
-  </footer>
+<footer>© Solis Labs</footer>
 
 <script>
 
@@ -772,82 +928,185 @@ const reveals = document.querySelectorAll('.reveal');
 function revealOnScroll() {
   const trigger = window.innerHeight * 0.85;
   reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < trigger) el.classList.add('active');
+    if (el.getBoundingClientRect().top < trigger) el.classList.add('active');
   });
 }
-
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
+const canvas = document.getElementById('stars-canvas');
+const ctx    = canvas.getContext('2d');
+let stars    = [];
 
+function initStars() {
+  canvas.width  = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  stars = Array.from({ length: 140 }, () => ({
+    x:     Math.random() * canvas.width,
+    y:     Math.random() * canvas.height,
+    r:     Math.random() * 1.4 + 0.2,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.0004 + 0.0001
+  }));
+}
 
-const visuals = document.querySelectorAll('.visual');
+function animateStars(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (!document.body.classList.contains('light')) {
+    stars.forEach(s => {
+      const a = 0.1 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(190,210,255,${a.toFixed(3)})`;
+      ctx.fill();
+    });
+  }
+  requestAnimationFrame(animateStars);
+}
+
+window.addEventListener('resize', initStars);
+initStars();
+requestAnimationFrame(animateStars);
+
+const visuals  = document.querySelectorAll('.visual');
 const services = document.querySelectorAll('.service');
 
 let currentIndex = 0;
 let interval;
 
 function showSlide(index) {
-  visuals.forEach(v => v.classList.remove('active'));
+  visuals.forEach(v  => v.classList.remove('active'));
   services.forEach(s => s.classList.remove('active'));
-
   visuals[index].classList.add('active');
   services[index].classList.add('active');
-
   currentIndex = index;
 }
 
 function startCarousel() {
-  interval = setInterval(() => {
-    let next = (currentIndex + 1) % visuals.length;
-    showSlide(next);
-  }, 3000);
+  clearInterval(interval);
+  interval = setInterval(() => showSlide((currentIndex + 1) % visuals.length), 3000);
 }
 
 services.forEach((service, index) => {
-  service.addEventListener('mouseenter', () => {
+  service.addEventListener('mouseenter', () => { clearInterval(interval); showSlide(index); });
+  service.addEventListener('mouseleave', startCarousel);
+
+  service.addEventListener('touchstart', () => {
     clearInterval(interval);
     showSlide(index);
-  });
-
-  service.addEventListener('mouseleave', () => {
-    startCarousel();
-  });
+    setTimeout(() => { service.classList.remove('active'); startCarousel(); }, 1000);
+  }, { passive: true });
 });
 
 showSlide(0);
 startCarousel();
 
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
 
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 200) current = s.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+});
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-link");
+const themeButtons = document.querySelectorAll('.theme-toggle');
 
-window.addEventListener("scroll", () => {
+if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
 
-  let current = "";
+themeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  });
+});
 
-  sections.forEach(section => {
-    const top = section.offsetTop - 200;
+const langToggles = document.querySelectorAll('.lang-toggle input');
+langToggles.forEach(toggle => {
+  toggle.addEventListener('change', () => {
+    const isDE = toggle.checked;
+    langToggles.forEach(t => t.checked = isDE);
+    window.setLang(isDE ? 'de' : 'en');
+  });
+});
 
-    if (scrollY >= top) {
-      current = section.getAttribute("id");
+const menuToggle = document.querySelector('.menu-toggle');
+const navMobile  = document.querySelector('.nav-mobile');
+menuToggle.addEventListener('click', e => {
+  e.stopPropagation();
+  navMobile.classList.toggle('open');
+});
+document.addEventListener('click', e => {
+  if (navMobile.classList.contains('open') && !navMobile.contains(e.target)) {
+    navMobile.classList.remove('open');
+  }
+});
+navMobile.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => navMobile.classList.remove('open'));
+});
+
+const TRANSLATIONS = {
+  de: {
+	"nav.works":      "Arbeiten",
+	"nav.contact":    "Kontakt",
+	"hero.subtitle":  "Ein unabhängiges audiovisuelles Studio, das sich auf die Entwicklung zeitgemäßer und ausdrucksstarker Medienprojekte spezialisiert hat.",
+	"about.title":       "Was ist Solis Labs?",
+	"about.card1.title": "Ein-Personen-Studio",
+	"about.card1.text":  "Solis Labs basiert auf einem einheitlichen kreativen Workflow. Ein Kopf, eine Vision, volle Kontrolle über Bild, Ton und Rhythmus.",
+	"about.card2.title": "Systemdenken",
+	"about.card2.text":  "Projekte werden als vollständige Systeme konzipiert. Visuals, Animation und Audio werden gemeinsam entwickelt, um Bedeutung und Stimmung zu verstärken.",
+	"about.card3.title": "Experimentelle Denkweise",
+	"about.card3.text":  "Inspiriert von Science-Fiction, Minimalismus und der digitalen Industrie. Jedes Projekt wird als kleines Universum mit eigenen Regeln behandelt.",
+	"cap.title":      "Kernkompetenzen",
+	"cap.s1.title":   "Video & Schnitt",
+	"cap.s2.title":   "Sound & Musik",
+	"cap.s4.title":   "Audiovisuelle Systeme",
+	"works.title":       "Ausgewählte Arbeiten",
+	"works.card1.title": "Letztes Projekt",
+	"works.card1.text":  "Erstellt mit Blender",
+	"works.card2.title": "Lieblingsstil",
+	"works.card2.text":  "Erstellt mit Cinema 4D",
+	"works.card3.title": "Beliebtes Projekt",
+	"works.card3.text":  "Erstellt mit Panzoid",
+	"contact.title":      "Kontakt",
+	"contact.card1.title":"Schreib mir",
+	"contact.card1.text": "Solis Labs ist offen für Zusammenarbeit, Praktika und Medienprojekte.",
+	"contact.card2.title":"Standort",
+	"contact.card3.title":"Deutschland / Remote",
+	"contact.card4.title":"Meine Musik",
+	"contact.card5.title":"Alte Arbeiten",
+	"contact.card6.title":"Source Code der Webseite",
+  }
+};
+
+let translations = {};
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[key] !== undefined) {
+      if (!el.dataset.i18nDefault) el.dataset.i18nDefault = el.textContent;
+      el.textContent = translations[key];
+    } else if (el.dataset.i18nDefault) {
+      el.textContent = el.dataset.i18nDefault;
     }
   });
+}
 
-  navLinks.forEach(link => {
-    link.classList.remove("active");
+window.setLang = function(lang) {
+  localStorage.setItem('lang', lang);
+  translations = TRANSLATIONS[lang] || {};
+  applyTranslations();
+};
 
-    if (link.getAttribute("href") === "#" + current) {
-      link.classList.add("active");
-    }
-  });
-
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('lang');
+  if (saved && saved !== 'en') {
+    document.querySelectorAll('.lang-toggle input').forEach(t => t.checked = true);
+    window.setLang(saved);
+  }
 });
 
 </script>
-
-
 </body>
 </html>
